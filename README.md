@@ -1,5 +1,11 @@
 # Android Now Activity Plugin
 
+[![JetBrains Plugin](https://img.shields.io/badge/JetBrains-Plugin-orange.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
+[![Plugin Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![Android Studio](https://img.shields.io/badge/Android%20Studio-2021.3%2B-green.svg?style=flat-square)](https://developer.android.com/studio)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black.svg?style=flat-square)](https://github.com/Txca/AndroidNowActivityPlugin)
+
 ## ✅ 项目说明
 该项目完全由[Trae](https://www.trae.ai/)开发，我最初的目的有两个，一是了解下现代AI IDE的实际能力，二是自己也的确需要这么一个小插件。除了这一段项目说明及图片部分，**整个项目**包括该`README`的剩余部分，均由[Trae](https://www.trae.ai/)独立完成(非SOLO模式，因为没排上队)。我本人没有任何 IDEA 插件开发经验，整个过程大约花了 10 轮左右的对话，涵盖了功能实现、UI 修改以及功能完善等环节。
 
