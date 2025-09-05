@@ -155,34 +155,12 @@ class ActivityToolWindow(private val project: Project) {
         scrollPane.border = null
         historyPanel.add(scrollPane, BorderLayout.CENTER)
         
-        // 使用JSplitPane分割左右两部分，自定义分割线样式
+        // 使用JSplitPane分割左右两部分
         val splitPane = JSplitPane(JSplitPane.HORIZONTAL_SPLIT, currentActivityPanel, historyPanel)
         splitPane.resizeWeight = 0.6 // 左侧占60%
         splitPane.dividerLocation = 400
         splitPane.dividerSize = 6
         splitPane.border = null
-        
-        // 自定义分割线UI
-        splitPane.ui = object : javax.swing.plaf.basic.BasicSplitPaneUI() {
-            override fun createDefaultDivider(): javax.swing.plaf.basic.BasicSplitPaneDivider {
-                return object : javax.swing.plaf.basic.BasicSplitPaneDivider(this) {
-                    override fun paint(g: java.awt.Graphics) {
-                        val g2 = g as java.awt.Graphics2D
-                        g2.setRenderingHint(java.awt.RenderingHints.KEY_ANTIALIASING, java.awt.RenderingHints.VALUE_ANTIALIAS_ON)
-                        g2.color = java.awt.Color(220, 220, 220)
-                        g2.fillRoundRect(0, 0, width, height, 4, 4)
-                        
-                        // 绘制中间的抓手
-                        g2.color = java.awt.Color(180, 180, 180)
-                        val centerX = width / 2
-                        val centerY = height / 2
-                        for (i in -1..1) {
-                            g2.fillOval(centerX - 1, centerY + i * 8 - 1, 2, 2)
-                        }
-                    }
-                }
-            }
-        }
         
         contentPanel.add(splitPane, BorderLayout.CENTER)
         

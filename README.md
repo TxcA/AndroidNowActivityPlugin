@@ -1,7 +1,7 @@
 # Android Now Activity Plugin
 
 [![JetBrains Plugin](https://img.shields.io/badge/JetBrains-Plugin-orange.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
-[![Plugin Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
+[![Plugin Version](https://img.shields.io/badge/version-1.0.1-blue.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 [![Android Studio](https://img.shields.io/badge/Android%20Studio-2021.3%2B-green.svg?style=flat-square)](https://developer.android.com/studio)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black.svg?style=flat-square)](https://github.com/Txca/AndroidNowActivityPlugin)

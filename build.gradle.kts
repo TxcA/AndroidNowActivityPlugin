@@ -1,11 +1,11 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.5.32"
-    id("org.jetbrains.intellij") version "1.0"
+    id("org.jetbrains.kotlin.jvm") version "1.9.10"
+    id("org.jetbrains.intellij") version "1.13.3"
 }
 
 group = "com.androidnowactivity"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -14,7 +14,7 @@ repositories {
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2021.3.3")
+    version.set("2023.2.6")
     type.set("IC") // Target IDE Platform
     
     plugins.set(listOf("android"))

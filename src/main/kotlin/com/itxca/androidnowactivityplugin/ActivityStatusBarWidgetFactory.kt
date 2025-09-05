@@ -48,10 +48,11 @@ class ActivityStatusBarWidgetFactory : StatusBarWidgetFactory {
             }
             
             // 如果没有找到Android Facet，检查是否存在Android相关文件
-            val baseDir = project.baseDir
-            if (baseDir != null) {
+            val projectFile = project.projectFile
+            val projectDir = projectFile?.parent
+            if (projectDir != null) {
                 // 检查是否存在build.gradle文件并包含Android插件
-                val buildGradle = baseDir.findChild("build.gradle") ?: baseDir.findChild("build.gradle.kts")
+                val buildGradle = projectDir.findChild("build.gradle") ?: projectDir.findChild("build.gradle.kts")
                 if (buildGradle != null && buildGradle.exists()) {
                     val content = String(buildGradle.contentsToByteArray())
                     if (content.contains("com.android.application") || 
@@ -61,9 +62,9 @@ class ActivityStatusBarWidgetFactory : StatusBarWidgetFactory {
                     }
                 }
                 
-                // 检查是否存在AndroidManifest.xml
-                val manifestFile = baseDir.findFileByRelativePath("src/main/AndroidManifest.xml") ?:
-                                 baseDir.findFileByRelativePath("app/src/main/AndroidManifest.xml")
+                // 检查AndroidManifest.xml
+                val manifestFile = projectDir.findFileByRelativePath("src/main/AndroidManifest.xml") ?:
+                                 projectDir.findFileByRelativePath("app/src/main/AndroidManifest.xml")
                 if (manifestFile != null && manifestFile.exists()) {
                     return true
                 }
