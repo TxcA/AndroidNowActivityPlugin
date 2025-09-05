@@ -38,14 +38,8 @@ class ActivityStatusBarWidgetFactory : StatusBarWidgetFactory {
             val moduleManager = com.intellij.openapi.module.ModuleManager.getInstance(project)
             val modules = moduleManager.modules
             
-            for (module in modules) {
-                // 检查模块是否为Android模块
-                val facetManager = com.intellij.facet.FacetManager.getInstance(module)
-                val androidFacets = facetManager.getFacetsByType(org.jetbrains.android.facet.AndroidFacet.ID)
-                if (androidFacets.isNotEmpty()) {
-                    return true
-                }
-            }
+            // 简化Android项目检测，避免直接依赖Android Facet
+            // 通过检查文件结构来判断是否为Android项目
             
             // 如果没有找到Android Facet，检查是否存在Android相关文件
             val projectFile = project.projectFile
