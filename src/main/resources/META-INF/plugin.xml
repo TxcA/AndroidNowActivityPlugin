@@ -1,0 +1,90 @@
+<idea-plugin>
+    <id>com.itxca.androidnowactivityplugin</id>
+    <name>Android Now Activity</name>
+    <version>1.0.0</version>
+    <vendor url="https://github.com/Txca/AndroidNowActivityPlugin">Android Now Activity</vendor>
+
+    <description><![CDATA[
+    <h3>Android Now Activity Plugin</h3>
+    <p><strong>English:</strong></p>
+    <p>A powerful Android Studio plugin that displays the current active Android Activity in real-time. This plugin provides an intuitive tool window interface to help developers quickly understand their app's Activity status.</p>
+    
+    <p><strong>Features:</strong></p>
+    <ul>
+        <li><strong>Real-time Activity Monitoring:</strong> Automatically detects and displays the current foreground Activity</li>
+        <li><strong>Multi-device Support:</strong> Supports multiple connected Android devices simultaneously</li>
+        <li><strong>Activity History:</strong> Shows recent Activity list with timestamps (configurable quantity)</li>
+        <li><strong>One-click Copy:</strong> Single click to copy Activity short name, double click for full class name</li>
+        <li><strong>Theme Adaptive:</strong> Automatically adapts to IDE's dark/light theme</li>
+        <li><strong>Configurable Settings:</strong> Customizable refresh interval, history count, etc.</li>
+    </ul>
+    
+    <p><strong>中文:</strong></p>
+    <p>一个强大的 Android Studio 插件，用于实时显示当前连接设备上正在运行的 Activity。该插件提供了直观的工具窗口界面，帮助开发者快速了解应用的 Activity 状态。</p>
+    
+    <p><strong>主要功能:</strong></p>
+    <ul>
+        <li><strong>实时Activity监控:</strong> 自动检测并显示当前前台Activity</li>
+        <li><strong>多设备支持:</strong> 支持同时连接多个Android设备</li>
+        <li><strong>Activity历史记录:</strong> 显示最近访问的Activity列表（可配置数量）</li>
+        <li><strong>一键复制:</strong> 单击复制Activity简名，双击复制完整类名</li>
+        <li><strong>主题自适应:</strong> 自动适配IDE的深色/浅色主题</li>
+        <li><strong>可配置设置:</strong> 刷新间隔、历史记录数量等可自定义</li>
+    </ul>
+    
+    <p><strong>Compatibility / 兼容性:</strong></p>
+    <ul>
+        <li>Android Studio 2021.3 (Build 213) or newer / 或更新版本</li>
+        <li>Supports Android 7+ devices / 支持 Android 7+ 设备</li>
+        <li>Multi-layer compatibility strategy for different Android versions / 针对不同Android版本的多层兼容策略</li>
+    </ul>
+    ]]></description>
+
+    <change-notes><![CDATA[
+    <h3>Version 1.0.0</h3>
+    <p><strong>English:</strong></p>
+    <ul>
+        <li>Initial release with comprehensive Activity monitoring</li>
+        <li>Real-time Activity detection with 7-layer compatibility strategy</li>
+        <li>Beautiful rounded UI with theme adaptation</li>
+        <li>Activity history with timestamps and smart deduplication</li>
+        <li>Multi-device support with device switching</li>
+        <li>Configurable settings and custom ADB path support</li>
+        <li>Optimized for Android 7-15+ compatibility</li>
+    </ul>
+    
+    <p><strong>中文:</strong></p>
+    <ul>
+        <li>首次发布，提供全面的Activity监控功能</li>
+        <li>实时Activity检测，采用7层兼容策略</li>
+        <li>美观的圆角UI设计，支持主题自适应</li>
+        <li>Activity历史记录，带时间戳和智能去重</li>
+        <li>多设备支持，可切换设备</li>
+        <li>可配置设置，支持自定义ADB路径</li>
+        <li>针对Android 7-15+版本优化兼容性</li>
+    </ul>
+    ]]></change-notes>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
+    <idea-version since-build="213" until-build="251.*"/>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.android</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <toolWindow id="AndroidNowActivity" 
+                    displayName="Android Activity" 
+                    anchor="bottom" 
+                    factoryClass="com.itxca.androidnowactivityplugin.ActivityToolWindowFactory"/>
+        <applicationConfigurable parentId="tools" instance="com.itxca.androidnowactivityplugin.ActivityMonitorConfigurable"
+                                 id="com.itxca.androidnowactivityplugin.ActivityMonitorConfigurable"
+                                 displayName="Android Now Activity"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
