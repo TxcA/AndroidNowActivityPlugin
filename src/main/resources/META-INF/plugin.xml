@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.itxca.androidnowactivityplugin</id>
     <name>Android Now Activity</name>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <vendor url="https://github.com/Txca/AndroidNowActivityPlugin">Android Now Activity</vendor>
 
     <description><![CDATA[

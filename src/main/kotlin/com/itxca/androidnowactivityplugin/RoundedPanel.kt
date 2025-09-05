@@ -1,7 +1,7 @@
 package com.itxca.androidnowactivityplugin
 
 import com.intellij.ui.JBColor
-import com.intellij.ide.ui.LafManager
+import com.intellij.util.ui.StartupUiUtil
 import java.awt.*
 import javax.swing.JPanel
 import javax.swing.border.Border
@@ -17,7 +17,7 @@ class RoundedPanel(private val cornerRadius: Int = 10) : JPanel() {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
         
         // 使用IDE主题自适应背景色
-        val backgroundColor = if (LafManager.getInstance().currentLookAndFeel?.name?.contains("Darcula") == true) {
+        val backgroundColor = if (StartupUiUtil.isUnderDarcula) {
             // 深色主题：使用稍微亮一点的背景
             JBColor.namedColor("Panel.background", Color(60, 63, 65))
         } else {
@@ -36,7 +36,7 @@ class RoundedPanel(private val cornerRadius: Int = 10) : JPanel() {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
         
         // 使用IDE主题自适应边框色
-        val borderColor = if (LafManager.getInstance().currentLookAndFeel?.name?.contains("Darcula") == true) {
+        val borderColor = if (StartupUiUtil.isUnderDarcula) {
             // 深色主题：使用较亮的边框
             JBColor.namedColor("Component.borderColor", Color(85, 85, 85))
         } else {
