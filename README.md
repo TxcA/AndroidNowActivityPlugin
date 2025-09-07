@@ -1,7 +1,7 @@
 # Android Now Activity Plugin
 
 [![JetBrains Plugin](https://img.shields.io/badge/JetBrains-Plugin-orange.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
-[![Plugin Version](https://img.shields.io/badge/version-1.0.4-blue.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
+[![Plugin Version](https://img.shields.io/badge/version-1.0.5-blue.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 [![Android Studio](https://img.shields.io/badge/Android%20Studio-2024.1%2B-green.svg?style=flat-square)](https://developer.android.com/studio)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black.svg?style=flat-square)](https://github.com/Txca/AndroidNowActivityPlugin)
@@ -114,7 +114,7 @@ Android Now Activity 是一个 Android Studio 插件，用于实时显示当前�
 
 3. **生成的插件文件**
    ```
-   build/distributions/AndroidNowActivity-1.0.4.zip
+   build/distributions/AndroidNowActivity-1.0.5.zip
    ```
 
 ### 安装方法
