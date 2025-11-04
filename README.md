@@ -1,9 +1,9 @@
 # Android Now Activity Plugin
 
 [![JetBrains Plugin](https://img.shields.io/badge/JetBrains-Plugin-orange.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
-[![Plugin Version](https://img.shields.io/badge/version-1.0.5-blue.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
+[![Plugin Version](https://img.shields.io/badge/version-1.0.6-blue.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
-[![Android Studio](https://img.shields.io/badge/Android%20Studio-2024.1%2B-green.svg?style=flat-square)](https://developer.android.com/studio)
+[![Android Studio](https://img.shields.io/badge/Android%20Studio-2025.2%2B-green.svg?style=flat-square)](https://developer.android.com/studio)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black.svg?style=flat-square)](https://github.com/Txca/AndroidNowActivityPlugin)
 
 ## ✅ 项目说明
@@ -91,7 +91,7 @@ Android Now Activity 是一个 Android Studio 插件，用于实时显示当前�
 ### 环境要求
 
 - **JDK**: 17 或更高版本
-- **Android Studio**: 2024.1 (Build 241) 或更高版本
+- **Android Studio**: 2023.2 (Build 223) 或更高版本
 - **Gradle**: 7.6+ (项目自带)
 - **Kotlin**: 1.9+
 
