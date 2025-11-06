@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.androidnowactivity"
-version = "1.0.6"
+version = "1.0.7"
 
 repositories {
     mavenCentral()
@@ -32,6 +32,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("223")
+        untilBuild.set("252.*")
     }
 
     signPlugin {

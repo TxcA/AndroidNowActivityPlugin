@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.itxca.androidnowactivityplugin</id>
     <name>Android Now Activity</name>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <vendor url="https://github.com/Txca/AndroidNowActivityPlugin">Android Now Activity</vendor>
 
     <description><![CDATA[
@@ -41,6 +41,21 @@
     ]]></description>
 
     <change-notes><![CDATA[
+    <h3>Version 1.0.7</h3>
+    <p><strong>English:</strong></p>
+    <ul>
+        <li>Raise packaging upper bound to 252.* to avoid 241.* cap</li>
+        <li>Update README and metadata for 1.0.7</li>
+        <li>General maintenance and documentation tweaks</li>
+    </ul>
+    
+    <p><strong>中文:</strong></p>
+    <ul>
+        <li>打包时显式设置兼容上限为 252.*，避免默认 241.* 限制</li>
+        <li>更新 README 与元数据到 1.0.7</li>
+        <li>常规维护与文档优化</li>
+    </ul>
+    
     <h3>Version 1.0.6</h3>
     <p><strong>English:</strong></p>
     <ul>
