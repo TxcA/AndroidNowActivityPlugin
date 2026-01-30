@@ -1,7 +1,7 @@
 # Android Now Activity Plugin
 
 [![JetBrains Plugin](https://img.shields.io/badge/JetBrains-Plugin-orange.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
-[![Plugin Version](https://img.shields.io/badge/version-1.0.7-blue.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
+[![Plugin Version](https://img.shields.io/badge/version-1.0.8-blue.svg?style=flat-square)](https://plugins.jetbrains.com/plugin/28386-android-now-activity)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 [![Android Studio](https://img.shields.io/badge/Android%20Studio-2025.2%2B-green.svg?style=flat-square)](https://developer.android.com/studio)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black.svg?style=flat-square)](https://github.com/Txca/AndroidNowActivityPlugin)
@@ -20,7 +20,7 @@ Android Now Activity 是一个 Android Studio 插件，用于实时显示当前�
 - **Activity历史记录**：显示最近访问的Activity列表（可配置数量）
 - **一键复制**：单击复制Activity简名，双击复制完整类名
 - **主题自适应**：自动适配IDE的深色/浅色主题
-- **可配置设置**：刷新间隔、历史记录数量等可自定义
+- **可配置设置**：Activity与设备刷新间隔、历史记录数量等可自定义
 
 ### 🖥️ 界面预览
 
@@ -58,7 +58,8 @@ Android Now Activity 是一个 Android Studio 插件，用于实时显示当前�
 │  │   └── Command Execution (命令执行)               │
 │  │                                                  │
 │  └── ActivityMonitorSettings (设置管理)             │
-│      ├── Refresh Interval (刷新间隔)                │
+│      ├── Activity Refresh Interval (Activity刷新间隔)│
+│      ├── Device Refresh Interval (设备刷新间隔)     │
 │      ├── History Size (历史记录数量)                │
 │      └── ADB Path Configuration (ADB路径配置)       │
 └─────────────────────────────────────────────────────┘
@@ -114,7 +115,7 @@ Android Now Activity 是一个 Android Studio 插件，用于实时显示当前�
 
 3. **生成的插件文件**
    ```
-   build/distributions/AndroidNowActivity-1.0.5.zip
+   build/distributions/AndroidNowActivity-1.0.8.zip
    ```
 
 ### 安装方法
@@ -161,7 +162,8 @@ Android Now Activity 是一个 Android Studio 插件，用于实时显示当前�
 
 2. **可配置选项**
    - **启用/禁用插件**：控制插件是否工作
-   - **刷新间隔**：设置Activity检测频率（1-60秒）
+   - **Activity刷新间隔**：设置Activity检测频率（1-60秒）
+   - **设备刷新间隔**：设置设备检测频率（1-60秒）
    - **显示设备信息**：在提示中显示设备详细信息
    - **Activity历史数量**：设置历史记录保存数量（5-50个）
    - **自定义ADB路径**：手动指定ADB可执行文件路径

@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.itxca.androidnowactivityplugin</id>
     <name>Android Now Activity</name>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <vendor url="https://github.com/Txca/AndroidNowActivityPlugin">Android Now Activity</vendor>
 
     <description><![CDATA[
@@ -41,6 +41,21 @@
     ]]></description>
 
     <change-notes><![CDATA[
+    <h3>Version 1.0.8</h3>
+    <p><strong>English:</strong></p>
+    <ul>
+        <li>Separate refresh intervals for Activity and device updates</li>
+        <li>Remove upper compatibility bound to support more IDE versions</li>
+        <li>Update README and metadata for 1.0.8</li>
+    </ul>
+    
+    <p><strong>中文:</strong></p>
+    <ul>
+        <li>Activity 与设备刷新间隔拆分</li>
+        <li>移除兼容上限以支持更多IDE版本</li>
+        <li>更新 README 与元数据到 1.0.8</li>
+    </ul>
+    
     <h3>Version 1.0.7</h3>
     <p><strong>English:</strong></p>
     <ul>
