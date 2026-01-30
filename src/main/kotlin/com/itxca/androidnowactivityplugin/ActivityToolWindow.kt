@@ -56,6 +56,8 @@ class ActivityToolWindow(private val project: Project) {
     private val settings = ActivityMonitorSettings.getInstance()
     @Volatile
     private var isMonitoring = false
+    @Volatile
+    private var isUpdatingDeviceList = false
     
     init {
         setupUI()
@@ -73,8 +75,11 @@ class ActivityToolWindow(private val project: Project) {
         topControlPanel.add(Box.createHorizontalStrut(5))
         topControlPanel.add(deviceComboBox)
         deviceComboBox.addActionListener {
+            if (isUpdatingDeviceList) {
+                return@addActionListener
+            }
             val selectedDevice = deviceComboBox.selectedItem as? String
-            if (selectedDevice != null && selectedDevice != currentDevice) {
+            if (selectedDevice != null && selectedDevice != currentDevice && selectedDevice != "No devices") {
                 currentDevice = selectedDevice
                 updateCurrentActivity()
             }
@@ -238,22 +243,30 @@ class ActivityToolWindow(private val project: Project) {
     private fun updateDeviceList() {
         if (adbPath != null) {
             connectedDevices = AdbUtils.getConnectedDevices(adbPath!!)
+            val desiredDevice = if (currentDevice != null && connectedDevices.contains(currentDevice)) {
+                currentDevice
+            } else {
+                connectedDevices.firstOrNull()
+            }
             
             SwingUtilities.invokeLater {
-                deviceComboBox.removeAllItems()
-                if (connectedDevices.isEmpty()) {
-                    deviceComboBox.addItem("No devices")
-                    currentDevice = null
-                } else {
-                    connectedDevices.forEach { device ->
-                        deviceComboBox.addItem(device)
-                    }
-                    if (currentDevice == null || !connectedDevices.contains(currentDevice)) {
-                        currentDevice = connectedDevices.firstOrNull()
+                isUpdatingDeviceList = true
+                try {
+                    deviceComboBox.removeAllItems()
+                    if (connectedDevices.isEmpty()) {
+                        deviceComboBox.addItem("No devices")
+                        currentDevice = null
+                    } else {
+                        connectedDevices.forEach { device ->
+                            deviceComboBox.addItem(device)
+                        }
+                        currentDevice = desiredDevice
                         if (currentDevice != null) {
                             deviceComboBox.selectedItem = currentDevice
                         }
                     }
+                } finally {
+                    isUpdatingDeviceList = false
                 }
             }
         }
