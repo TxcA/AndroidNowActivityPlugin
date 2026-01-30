@@ -65,7 +65,8 @@ class ActivityStatusBarWidget(private val project: Project) : StatusBarWidget, S
         }
         
         tooltip.append("\nLeft click to copy, Right click for device menu")
-        tooltip.append("\nRefresh interval: ${settings.refreshInterval}s")
+        tooltip.append("\nActivity refresh: ${settings.getValidActivityRefreshInterval()}s")
+        tooltip.append("\nDevice refresh: ${settings.getValidDeviceRefreshInterval()}s")
         
         return tooltip.toString()
     }
@@ -96,7 +97,6 @@ class ActivityStatusBarWidget(private val project: Project) : StatusBarWidget, S
             return
         }
         
-        // 定期更新Activity信息
         executor.scheduleWithFixedDelay({
             try {
                 if (!settings.enabled) {
@@ -108,20 +108,40 @@ class ActivityStatusBarWidget(private val project: Project) : StatusBarWidget, S
                 }
                 
                 updateDeviceList()
-                updateCurrentActivity()
                 
-                // 在EDT线程中更新UI
                 ApplicationManager.getApplication().invokeLater {
                     updateStatusBar()
                 }
             } catch (e: Exception) {
-                // 处理异常
                 ApplicationManager.getApplication().invokeLater {
                     currentActivity = "Error: ${e.message}"
                     updateStatusBar()
                 }
             }
-        }, 0, settings.getValidRefreshInterval().toLong(), TimeUnit.SECONDS)
+        }, 0, settings.getValidDeviceRefreshInterval().toLong(), TimeUnit.SECONDS)
+        
+        executor.scheduleWithFixedDelay({
+            try {
+                if (!settings.enabled) {
+                    ApplicationManager.getApplication().invokeLater {
+                        currentActivity = "Disabled"
+                        updateStatusBar()
+                    }
+                    return@scheduleWithFixedDelay
+                }
+                
+                updateCurrentActivity()
+                
+                ApplicationManager.getApplication().invokeLater {
+                    updateStatusBar()
+                }
+            } catch (e: Exception) {
+                ApplicationManager.getApplication().invokeLater {
+                    currentActivity = "Error: ${e.message}"
+                    updateStatusBar()
+                }
+            }
+        }, 0, settings.getValidActivityRefreshInterval().toLong(), TimeUnit.SECONDS)
     }
     
     private fun updateDeviceList() {

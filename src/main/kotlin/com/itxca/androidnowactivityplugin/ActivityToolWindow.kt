@@ -206,29 +206,14 @@ class ActivityToolWindow(private val project: Project) {
         updateDeviceList()
         updateCurrentActivity()
         
-        // 定期更新
         executor.scheduleWithFixedDelay({
             try {
                 if (!isMonitoring || !settings.enabled) {
                     return@scheduleWithFixedDelay
                 }
                 
-                // 在后台线程中执行ADB操作
                 updateDeviceList()
-                val newActivity = getCurrentActivityFromAdb()
                 
-                // 检查Activity是否发生变化
-                if (newActivity != currentActivity) {
-                    val oldActivity = currentActivity
-                    currentActivity = newActivity
-                    
-                    // 如果是有效的新Activity，添加到历史记录
-                    if (newActivity != "No Activity" && newActivity != "No Device" && newActivity != oldActivity) {
-                        addToHistory(newActivity)
-                    }
-                }
-                
-                // 在EDT线程中更新UI
                 SwingUtilities.invokeLater {
                     updateUI()
                 }
@@ -237,7 +222,34 @@ class ActivityToolWindow(private val project: Project) {
                     statusLabel.text = "Status: Error - ${e.message}"
                 }
             }
-        }, 0, settings.getValidRefreshInterval().toLong(), TimeUnit.SECONDS)
+        }, 0, settings.getValidDeviceRefreshInterval().toLong(), TimeUnit.SECONDS)
+        
+        executor.scheduleWithFixedDelay({
+            try {
+                if (!isMonitoring || !settings.enabled) {
+                    return@scheduleWithFixedDelay
+                }
+                
+                val newActivity = getCurrentActivityFromAdb()
+                
+                if (newActivity != currentActivity) {
+                    val oldActivity = currentActivity
+                    currentActivity = newActivity
+                    
+                    if (newActivity != "No Activity" && newActivity != "No Device" && newActivity != oldActivity) {
+                        addToHistory(newActivity)
+                    }
+                }
+                
+                SwingUtilities.invokeLater {
+                    updateUI()
+                }
+            } catch (e: Exception) {
+                SwingUtilities.invokeLater {
+                    statusLabel.text = "Status: Error - ${e.message}"
+                }
+            }
+        }, 0, settings.getValidActivityRefreshInterval().toLong(), TimeUnit.SECONDS)
     }
     
     private fun updateDeviceList() {
@@ -324,7 +336,7 @@ class ActivityToolWindow(private val project: Project) {
             connectedDevices.isEmpty() -> "Status: No devices connected"
             currentDevice == null -> "Status: No device selected"
             currentActivity == "No Activity" -> "Status: No activity detected"
-            else -> "Status: Active (Refresh: ${settings.getValidRefreshInterval()}s) | Device: ${currentDevice ?: "Unknown"}"
+            else -> "Status: Active (Activity: ${settings.getValidActivityRefreshInterval()}s, Device: ${settings.getValidDeviceRefreshInterval()}s) | Device: ${currentDevice ?: "Unknown"}"
         }
     }
     

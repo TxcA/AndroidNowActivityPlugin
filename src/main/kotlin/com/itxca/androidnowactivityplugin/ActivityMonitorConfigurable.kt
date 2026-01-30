@@ -17,7 +17,8 @@ class ActivityMonitorConfigurable : Configurable {
     private val settings = ActivityMonitorSettings.getInstance()
     
     private lateinit var enabledCheckBox: JBCheckBox
-    private lateinit var refreshIntervalSpinner: JSpinner
+    private lateinit var activityRefreshIntervalSpinner: JSpinner
+    private lateinit var deviceRefreshIntervalSpinner: JSpinner
     private lateinit var showDeviceInfoCheckBox: JBCheckBox
     private lateinit var useCustomAdbPathCheckBox: JBCheckBox
     private lateinit var customAdbPathField: JBTextField
@@ -31,7 +32,9 @@ class ActivityMonitorConfigurable : Configurable {
         // 创建表单组件
         enabledCheckBox = JBCheckBox("Enable Android Activity Monitor")
         
-        refreshIntervalSpinner = JSpinner(SpinnerNumberModel(1, 1, 60, 1))
+        activityRefreshIntervalSpinner = JSpinner(SpinnerNumberModel(1, 1, 60, 1))
+        
+        deviceRefreshIntervalSpinner = JSpinner(SpinnerNumberModel(5, 1, 60, 1))
         
         showDeviceInfoCheckBox = JBCheckBox("Show device information in tooltip")
         
@@ -50,7 +53,8 @@ class ActivityMonitorConfigurable : Configurable {
         // 使用FormBuilder创建表单布局
         val formBuilder = FormBuilder.createFormBuilder()
             .addComponent(enabledCheckBox)
-            .addLabeledComponent(JBLabel("Refresh interval (seconds):"), refreshIntervalSpinner)
+            .addLabeledComponent(JBLabel("Activity refresh interval (seconds):"), activityRefreshIntervalSpinner)
+            .addLabeledComponent(JBLabel("Device refresh interval (seconds):"), deviceRefreshIntervalSpinner)
             .addComponent(showDeviceInfoCheckBox)
             .addLabeledComponent(JBLabel("Activity history size:"), activityHistorySizeSpinner)
             .addVerticalGap(10)
@@ -65,7 +69,8 @@ class ActivityMonitorConfigurable : Configurable {
     
     override fun isModified(): Boolean {
         return enabledCheckBox.isSelected != settings.enabled ||
-                (refreshIntervalSpinner.value as Int) != settings.refreshInterval ||
+                (activityRefreshIntervalSpinner.value as Int) != settings.activityRefreshInterval ||
+                (deviceRefreshIntervalSpinner.value as Int) != settings.deviceRefreshInterval ||
                 showDeviceInfoCheckBox.isSelected != settings.showDeviceInfo ||
                 (activityHistorySizeSpinner.value as Int) != settings.activityHistorySize ||
                 useCustomAdbPathCheckBox.isSelected != settings.useCustomAdbPath ||
@@ -74,7 +79,8 @@ class ActivityMonitorConfigurable : Configurable {
     
     override fun apply() {
         settings.enabled = enabledCheckBox.isSelected
-        settings.refreshInterval = refreshIntervalSpinner.value as Int
+        settings.activityRefreshInterval = activityRefreshIntervalSpinner.value as Int
+        settings.deviceRefreshInterval = deviceRefreshIntervalSpinner.value as Int
         settings.showDeviceInfo = showDeviceInfoCheckBox.isSelected
         settings.activityHistorySize = activityHistorySizeSpinner.value as Int
         settings.useCustomAdbPath = useCustomAdbPathCheckBox.isSelected
@@ -83,7 +89,8 @@ class ActivityMonitorConfigurable : Configurable {
     
     override fun reset() {
         enabledCheckBox.isSelected = settings.enabled
-        refreshIntervalSpinner.value = settings.refreshInterval
+        activityRefreshIntervalSpinner.value = settings.activityRefreshInterval
+        deviceRefreshIntervalSpinner.value = settings.deviceRefreshInterval
         showDeviceInfoCheckBox.isSelected = settings.showDeviceInfo
         activityHistorySizeSpinner.value = settings.activityHistorySize
         useCustomAdbPathCheckBox.isSelected = settings.useCustomAdbPath
@@ -93,9 +100,14 @@ class ActivityMonitorConfigurable : Configurable {
     
     // Validation method for older IntelliJ versions
     fun doValidate(): ValidationInfo? {
-        val refreshInterval = refreshIntervalSpinner.value as Int
-        if (refreshInterval < 1 || refreshInterval > 60) {
-            return ValidationInfo("Refresh interval must be between 1 and 60 seconds", refreshIntervalSpinner)
+        val activityRefreshInterval = activityRefreshIntervalSpinner.value as Int
+        if (activityRefreshInterval < 1 || activityRefreshInterval > 60) {
+            return ValidationInfo("Activity refresh interval must be between 1 and 60 seconds", activityRefreshIntervalSpinner)
+        }
+        
+        val deviceRefreshInterval = deviceRefreshIntervalSpinner.value as Int
+        if (deviceRefreshInterval < 1 || deviceRefreshInterval > 60) {
+            return ValidationInfo("Device refresh interval must be between 1 and 60 seconds", deviceRefreshIntervalSpinner)
         }
         
         if (useCustomAdbPathCheckBox.isSelected && customAdbPathField.text.isBlank()) {

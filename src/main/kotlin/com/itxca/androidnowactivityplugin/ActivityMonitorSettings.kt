@@ -21,9 +21,16 @@ class ActivityMonitorSettings : PersistentStateComponent<ActivityMonitorSettings
     }
     
     /**
-     * 刷新间隔（秒）
+     * Activity刷新间隔（秒）
      */
+    var activityRefreshInterval: Int = 1
+    
     var refreshInterval: Int = 1
+    
+    /**
+     * 设备刷新间隔（秒）
+     */
+    var deviceRefreshInterval: Int = 5
     
     /**
      * 是否启用插件
@@ -54,19 +61,24 @@ class ActivityMonitorSettings : PersistentStateComponent<ActivityMonitorSettings
     
     override fun loadState(state: ActivityMonitorSettings) {
         XmlSerializerUtil.copyBean(state, this)
+        if (activityRefreshInterval == 1 && refreshInterval in 1..60) {
+            activityRefreshInterval = refreshInterval
+        }
     }
     
-    /**
-     * 验证刷新间隔是否有效
-     */
-    fun isValidRefreshInterval(): Boolean {
-        return refreshInterval in 1..60
+    fun isValidActivityRefreshInterval(): Boolean {
+        return activityRefreshInterval in 1..60
     }
     
-    /**
-     * 获取有效的刷新间隔
-     */
-    fun getValidRefreshInterval(): Int {
-        return if (isValidRefreshInterval()) refreshInterval else 1
+    fun isValidDeviceRefreshInterval(): Boolean {
+        return deviceRefreshInterval in 1..60
+    }
+    
+    fun getValidActivityRefreshInterval(): Int {
+        return if (isValidActivityRefreshInterval()) activityRefreshInterval else 1
+    }
+    
+    fun getValidDeviceRefreshInterval(): Int {
+        return if (isValidDeviceRefreshInterval()) deviceRefreshInterval else 5
     }
 }
