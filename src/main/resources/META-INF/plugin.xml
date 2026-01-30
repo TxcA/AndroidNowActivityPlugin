@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.itxca.androidnowactivityplugin</id>
     <name>Android Now Activity</name>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <vendor url="https://github.com/Txca/AndroidNowActivityPlugin">Android Now Activity</vendor>
 
     <description><![CDATA[
@@ -41,6 +41,19 @@
     ]]></description>
 
     <change-notes><![CDATA[
+    <h3>Version 1.0.9</h3>
+    <p><strong>English:</strong></p>
+    <ul>
+        <li>Update plugin version to 1.0.9</li>
+        <li>Refresh README and metadata for 1.0.9</li>
+    </ul>
+    
+    <p><strong>中文:</strong></p>
+    <ul>
+        <li>插件版本升级到 1.0.9</li>
+        <li>更新 README 与元数据到 1.0.9</li>
+    </ul>
+    
     <h3>Version 1.0.8</h3>
     <p><strong>English:</strong></p>
     <ul>
